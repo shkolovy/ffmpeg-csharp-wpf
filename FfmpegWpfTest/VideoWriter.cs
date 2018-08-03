@@ -27,8 +27,8 @@ namespace FfmpegWpfTest
 
 		private void StartFfmpegProcess(VideoRecordingOptions videoRecordingOptions)
 		{
-			var inputArgs = $"-thread_queue_size 512 -framerate {videoRecordingOptions.FrameRate} -f rawvideo -pix_fmt rgb32 -video_size {videoRecordingOptions.Width}x{videoRecordingOptions.Height} -i {pipePrefix}{pipeName}";
-			var outputArgs = $"-vcodec libx264 -crf 15 -pix_fmt yuv420p -preset {"veryslow"} -r {videoRecordingOptions.FrameRate} -y {Path.Combine(videoRecordingOptions.Path, videoRecordingOptions.FileName)}";
+			var inputArgs = $"-thread_queue_size 512 -use_wallclock_as_timestamps 1 -f rawvideo -pix_fmt rgb32 -video_size {videoRecordingOptions.Width}x{videoRecordingOptions.Height} -i {pipePrefix}{pipeName}";//$"-framerate {videoRecordingOptions.FrameRate} -f rawvideo -pix_fmt rgb32 -video_size {videoRecordingOptions.Width}x{videoRecordingOptions.Height} -i {pipePrefix}{pipeName}";
+			var outputArgs = $"-vcodec libx264 -crf 15 -pix_fmt yuv420p -preset ultrafast -r {videoRecordingOptions.FrameRate} -y {Path.Combine(videoRecordingOptions.Path, videoRecordingOptions.FileName)}"; //$"-vcodec libx264 -crf 17 -pix_fmt yuv420p -preset ultrafast -r {videoRecordingOptions.FrameRate} -y {Path.Combine(videoRecordingOptions.Path, videoRecordingOptions.FileName)}";
 			var ffmpegPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg.exe");
 
 			_ffmpegProcess = new Process

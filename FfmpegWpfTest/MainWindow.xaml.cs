@@ -26,8 +26,8 @@ namespace FfmpegWpfTest
 			_videoRecordingOptions = new VideoRecordingOptions
 			{
 				FrameRate = 10,
-				Height = 500,
-				Width = 600,
+				Height = 900,
+				Width = 900,
 				X = 300,
 				Y = 300,
 				Path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "videos"),
